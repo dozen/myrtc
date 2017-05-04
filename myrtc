@@ -1,0 +1,23 @@
+#!/bin/bash
+WORK_DIR=$(cd $(dirname $0); pwd)
+STORED_FILE="${WORK_DIR}/time.txt"
+
+if [ "$1" = "store" ]; then
+
+  date -R > ${WORK_DIR}/time.txt
+
+  if [ $? = 0 ]; then
+    echo "時刻を保存しました"
+  fi
+
+elif [ "$1" = "restore" ]; then
+
+  if [ -f ${STORED_FILE} ]; then
+    date -s "$(cat ${STORED_FILE})"
+    echo "時刻を復帰しました"
+    rm ${STORED_FILE}
+  else
+    echo "時刻ファイルがありません"
+  fi
+
+fi

@@ -1,0 +1,11 @@
+[Unit]
+Description=My RTC
+
+[Service]
+ExecStart=/usr/local/myrtc/myrtc restore
+ExecStop=/usr/local/myrtc/myrtc store
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
